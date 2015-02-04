@@ -1,0 +1,30 @@
+%html
+  %head
+    %title gostit
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    / Latest compiled and minified CSS
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", :rel => "stylesheet"}
+      / Optional theme
+      %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css", :rel => "stylesheet"}
+        / Latest compiled and minified JavaScript
+        %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
+  %body
+    %h1 GOSTIT LOGO
+    %nav.navbar.navbar-default{:role => "navigation"}
+      .container-fluid
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+          %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        .navbar-collapse.collapse.app__top-navigation-wrapper
+          = render_navigation :expand_all => true, :renderer => :bootstrap
+          %ul.nav.navbar-nav.navbar-right
+            %a{:href => "/"} login
+        / /.navbar-collapse
+      / /.container-fluid
+    = yield
