@@ -1,29 +1,23 @@
-<h1>Listing users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th> name</th>
-      <th>Description</th>
-      <th>Image url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user. name %></td>
-        <td><%= user.description %></td>
-        <td><%= user.image_url %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+<h1>Listing Users</h1>
+<table class = "Users">
+<% @users.each do |user| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td class="list_description">
+            <dl>
+                <dt><%= user.name %></dt>
+                <dd><%= truncate(strip_tags(user.description),
+                    length: 80) %></dd>
+                <dd><%= user.image_url %></dd>    
+            </dl>
+</td>
+        <td class="list_actions">
+            <%= link_to 'Show', user %><br/>
+            <%= link_to 'Edit', edit_user_path(user) %><br/>
+            <%= link_to 'Destroy', user, method: :delete, 
+            data: { confirm: 'Are you sure?' } %>
+</td> 
+</tr>
+<% end %>
 </table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+<br />
+<%= link_to 'New user', new_user_path %>

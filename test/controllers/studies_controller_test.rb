@@ -3,6 +3,11 @@ require 'test_helper'
 class StudiesControllerTest < ActionController::TestCase
   setup do
     @study = studies(:one)
+     @update = {
+            title: 'Lorem Ipsum',
+            text: 'Wibbles are fun!',
+            user_id: 25
+}
   end
 
   test "should get index" do
@@ -18,7 +23,7 @@ class StudiesControllerTest < ActionController::TestCase
 
   test "should create study" do
     assert_difference('Study.count') do
-      post :create, study: { text: @study.text, title: @study.title, user_id: @study.user_id }
+      post :create, study: @update
     end
 
     assert_redirected_to study_path(assigns(:study))
@@ -35,7 +40,7 @@ class StudiesControllerTest < ActionController::TestCase
   end
 
   test "should update study" do
-    patch :update, id: @study, study: { text: @study.text, title: @study.title, user_id: @study.user_id }
+    patch :update, id: @study, study: @update
     assert_redirected_to study_path(assigns(:study))
   end
 
